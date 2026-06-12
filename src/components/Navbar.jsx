@@ -2,7 +2,15 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
-import { FaMoon, FaSun, FaBars, FaTimes } from "react-icons/fa";
+import {
+  FaMoon,
+  FaSun,
+  FaBars,
+  FaTimes,
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
 import Logo from "../assets/logo.png";
 import QuoteModal from "./QuoteModal";
 
@@ -38,16 +46,20 @@ const Navbar = ({ onOpenQuote }) => {
         <NavLink to="/" className={linkClass}>
           <img src={Logo} alt="Abigzitel Logo" className="h-12 w-auto" />
         </NavLink>
-
-        {/* RIGHT SIDE CONTROLS (ALWAYS VISIBLE) */}
         <div className="flex items-center gap-4">
-          {/* THEME TOGGLE (NOW ALWAYS VISIBLE) */}
-          <button onClick={toggleTheme} className="text-lg">
+          <button
+            onClick={toggleTheme}
+            className="text-lg p-2 rounded-md bg-white dark:hover:bg-gray-700 transition"
+          >
             {darkMode ? <FaSun /> : <FaMoon />}
           </button>
 
           {/* MOBILE MENU BUTTON */}
-          <button className="md:hidden text-xl" onClick={() => setOpen(true)}>
+          <button
+            className="md:hidden text-xl p-2 rounded-md bg-white/80 dark:bg-white hover:bg-gray-200 dark:hover:bg-gray-700 transform transition"
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
+          >
             <FaBars />
           </button>
 
@@ -79,107 +91,128 @@ const Navbar = ({ onOpenQuote }) => {
         </div>
       </nav>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE MENU - Modern Fullscreen Centered */}
       <div
-        className={`fixed inset-0 md:hidden z-50 ${open ? "pointer-events-auto" : "pointer-events-none"}`}
+        className={`fixed inset-0 md:hidden z-10 ${open ? "pointer-events-auto" : "pointer-events-none"}`}
       >
-        {/* BACKDROP */}
+        {/* Backdrop */}
         <div
           onClick={() => setOpen(false)}
-          className={`absolute inset-0 bg-black transition-opacity duration-300 ${
-            open ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 bg-black transition-opacity duration-300 ${open ? "opacity-80 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
         />
 
-        {/* SOLID SIDE PANEL */}
+        {/* Centered Panel */}
         <div
-          className={`absolute top-0 right-0 h-full w-72 bg-white dark:bg-black shadow-xl border-l border-gray-200 dark:border-gray-800 transform transition-transform duration-300 ease-in-out ${
-            open ? "translate-x-0" : "translate-x-full"
-          }`}
+          className={`absolute inset-0 flex items-start justify-center transition-opacity duration-300 ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
         >
-          {/* HEADER */}
-          <div className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-800">
-            <h2 className="font-bold text-black dark:text-white">Menu</h2>
+          <div
+            className={`w-full max-w-lg mx-3 bg-white dark:bg-gray-900/95 rounded-xl shadow-2xl p-4 transform transition-all duration-300 ${open ? "translate-y-0" : "-translate-y-2"}`}
+          >
+            <div className="w-full flex justify-center">
+              <div className="h-1 w-12 rounded-full bg-gray-300 dark:bg-gray-700 mb-2" />
+            </div>
+            <div className="flex items-center justify-between mb-2">
+              <NavLink
+                to="/"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-3"
+              >
+                <img src={Logo} alt="logo" className="h-10 w-auto" />
+                <span className="font-bold text-lg text-black dark:text-white">
+                  Abigzitel
+                </span>
+              </NavLink>
+              <button
+                onClick={() => setOpen(false)}
+                className="text-2xl p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+              >
+                <FaTimes />
+              </button>
+            </div>
 
-            <button onClick={() => setOpen(false)}>
-              <FaTimes />
-            </button>
-          </div>
+            <nav className="flex flex-col items-center gap-4">
+              <NavLink
+                onClick={() => setOpen(false)}
+                to="/"
+                className={({ isActive }) =>
+                  `text-2xl ${isActive ? "text-transparent bg-clip-text bg-gradient-to-r from-[#9CE23A] to-[#29C87D] font-semibold" : "text-black dark:text-white"} hover:text-[#29C87D] transition`
+                }
+              >
+                Home
+              </NavLink>
+              <NavLink
+                onClick={() => setOpen(false)}
+                to="/about"
+                className={({ isActive }) =>
+                  `text-2xl ${isActive ? "text-transparent bg-clip-text bg-gradient-to-r from-[#9CE23A] to-[#29C87D] font-semibold" : "text-black dark:text-white"} hover:text-[#29C87D] transition`
+                }
+              >
+                About
+              </NavLink>
+              <NavLink
+                onClick={() => setOpen(false)}
+                to="/services"
+                className={({ isActive }) =>
+                  `text-2xl ${isActive ? "text-transparent bg-clip-text bg-gradient-to-r from-[#9CE23A] to-[#29C87D] font-semibold" : "text-black dark:text-white"} hover:text-[#29C87D] transition`
+                }
+              >
+                Services
+              </NavLink>
+              <NavLink
+                onClick={() => setOpen(false)}
+                to="/projects"
+                className={({ isActive }) =>
+                  `text-2xl ${isActive ? "text-transparent bg-clip-text bg-gradient-to-r from-[#9CE23A] to-[#29C87D] font-semibold" : "text-black dark:text-white"} hover:text-[#29C87D] transition`
+                }
+              >
+                Projects
+              </NavLink>
+              <NavLink
+                onClick={() => setOpen(false)}
+                to="/contact"
+                className={({ isActive }) =>
+                  `text-2xl ${isActive ? "text-transparent bg-clip-text bg-gradient-to-r from-[#9CE23A] to-[#29C87D] font-semibold" : "text-black dark:text-white"} hover:text-[#29C87D] transition`
+                }
+              >
+                Contact
+              </NavLink>
+            </nav>
 
-          {/* LINKS */}
-          <div className="flex flex-col gap-6 p-6 text-sm">
-            <NavLink
-              onClick={() => setOpen(false)}
-              to="/"
-              className={({ isActive }) =>
-                `block py-2 ${
-                  isActive
-                    ? "text-[#29C87D] font-semibold"
-                    : "text-black dark:text-white"
-                }`
-              }
-            >
-              Home
-            </NavLink>
-            <NavLink
-              onClick={() => setOpen(false)}
-              to="/about"
-              className={({ isActive }) =>
-                `block py-2 ${
-                  isActive
-                    ? "text-[#29C87D] font-semibold"
-                    : "text-black dark:text-white"
-                }`
-              }
-            >
-              About
-            </NavLink>
-            <NavLink
-              onClick={() => setOpen(false)}
-              to="/services"
-              className={({ isActive }) =>
-                `block py-2 ${
-                  isActive
-                    ? "text-[#29C87D] font-semibold"
-                    : "text-black dark:text-white"
-                }`
-              }
-            >
-              Services
-            </NavLink>
-            <NavLink
-              onClick={() => setOpen(false)}
-              to="/projects"
-              className={({ isActive }) =>
-                `block py-2 ${
-                  isActive
-                    ? "text-[#29C87D] font-semibold"
-                    : "text-black dark:text-white"
-                }`
-              }
-            >
-              Projects
-            </NavLink>
-            <NavLink
-              onClick={() => setOpen(false)}
-              to="/contact"
-              className={({ isActive }) =>
-                `block py-2 ${
-                  isActive
-                    ? "text-[#29C87D] font-semibold"
-                    : "text-black dark:text-white"
-                }`
-              }
-            >
-              Contact
-            </NavLink>
+            <div className="mt-8 flex flex-col gap-3">
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  onOpenQuote && onOpenQuote();
+                }}
+                className="w-full px-4 py-3 rounded-md bg-gradient-to-r from-[#9CE23A] to-[#29C87D] text-white font-medium"
+              >
+                Get Quote
+              </button>
 
-            <button
-              onClick={() => onOpenQuote()}
-              className="mt-4 px-4 py-2 rounded-lg text-white bg-gradient-to-r from-[#9CE23A] to-[#29C87D]"
-            >
-              Get Quote
-            </button>
+              <div className="flex items-center justify-center gap-6 text-gray-500 mt-2">
+                <a
+                  href="#"
+                  aria-label="facebook"
+                  className="hover:text-[#29C87D]"
+                >
+                  <FaFacebookF />
+                </a>
+                <a
+                  href="#"
+                  aria-label="instagram"
+                  className="hover:text-[#29C87D]"
+                >
+                  <FaInstagram />
+                </a>
+                <a
+                  href="#"
+                  aria-label="linkedin"
+                  className="hover:text-[#29C87D]"
+                >
+                  <FaLinkedinIn />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

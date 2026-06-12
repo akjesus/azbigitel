@@ -1,5 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import p1 from "../assets/projects/1.jpg";
+import p2 from "../assets/projects/2.jpg";
+import p3 from "../assets/projects/3.jpg";
+import p4 from "../assets/projects/4.jpg";
+import p5 from "../assets/projects/5.jpg";
+import p6 from "../assets/projects/6.jpg";
 
 const Projects = () => {
   const [filter, setFilter] = useState("all");
@@ -15,42 +21,42 @@ const Projects = () => {
       id: 1,
       title: "Luxury Residential Villa",
       category: "residential",
-      image: "/projects/p1.jpg",
+      image: p1,
       desc: "Modern 5-bedroom villa with smart home integration.",
     },
     {
       id: 2,
       title: "Corporate Office Tower",
       category: "commercial",
-      image: "/projects/p2.jpg",
+      image: p2,
       desc: "20-floor commercial office building in downtown core.",
     },
     {
       id: 3,
       title: "Highway Expansion Project",
       category: "infrastructure",
-      image: "/projects/p3.jpg",
+      image: p3,
       desc: "Major highway widening and structural reinforcement.",
     },
     {
       id: 4,
       title: "Modern Apartment Complex",
       category: "residential",
-      image: "/projects/p4.jpg",
+      image: p4,
       desc: "120-unit residential apartment development.",
     },
     {
       id: 5,
       title: "Shopping Mall Construction",
       category: "commercial",
-      image: "/projects/p5.jpg",
+      image: p5,
       desc: "Large retail and entertainment complex.",
     },
     {
       id: 6,
       title: "Bridge Engineering Project",
       category: "infrastructure",
-      image: "/projects/p6.jpg",
+      image: p6,
       desc: "Steel bridge connecting major transport routes.",
     },
   ];
@@ -60,7 +66,6 @@ const Projects = () => {
 
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white">
-
       {/* HERO */}
       <section className="py-24 text-center relative overflow-hidden">
         <div
@@ -204,7 +209,7 @@ const Projects = () => {
         {/* IMAGE */}
         <div className="rounded-xl overflow-hidden h-[350px] bg-gray-200 dark:bg-gray-800">
           <img
-            src="/projects/featured.jpg"
+            src={p1}
             alt="Featured Project"
             className="w-full h-full object-cover"
           />

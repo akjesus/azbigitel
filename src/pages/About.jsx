@@ -1,6 +1,6 @@
-
 import { motion } from "framer-motion";
 import { FaHardHat, FaBuilding, FaUsers, FaShieldAlt } from "react-icons/fa";
+import aboutImg from "../assets/projects/4.jpg";
 
 const About = () => {
   const fadeUp = {
@@ -55,11 +55,11 @@ const About = () => {
           <h2 className="text-3xl font-bold">Our Story</h2>
 
           <p className="text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
-            BuildPro started with a simple mission—to deliver high-quality
-            construction services with integrity and precision. Over the years,
-            we have grown into a trusted partner for residential, commercial,
-            and infrastructure projects. Our focus remains on innovation,
-            safety, and excellence in every build.
+            Abigzitel Limited started with a simple mission—to deliver
+            high-quality construction services with integrity and precision.
+            Over the years, we have grown into a trusted partner for
+            residential, commercial, and infrastructure projects. Our focus
+            remains on innovation, safety, and excellence in every build.
           </p>
 
           <p className="text-gray-600 dark:text-gray-400 mt-4 leading-relaxed">
@@ -73,8 +73,17 @@ const About = () => {
           whileInView="show"
           viewport={{ once: true }}
           variants={fadeUp}
-          className="h-[350px] rounded-xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-800 dark:to-gray-900"
-        />
+          className="h-[350px] rounded-xl overflow-hidden"
+        >
+          <motion.img
+            src={aboutImg}
+            alt="Construction project"
+            className="w-full h-full object-cover"
+            initial={{ scale: 1.05, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          />
+        </motion.div>
       </section>
 
       {/* STATS SECTION */}

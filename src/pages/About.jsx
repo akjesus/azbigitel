@@ -86,7 +86,6 @@ const About = () => {
         </motion.div>
       </section>
 
-      {/* STATS SECTION */}
       <section className="py-16 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
